@@ -2,7 +2,7 @@
 " Language:     Lua 4.0, Lua 5.0, Lua 5.1, Lua 5.2 and Lua 5.3
 " Maintainer:   Marcus Aurelius Farias <masserahguard-lua 'at' yahoo com>
 " First Author: Carlos Augusto Teixeira Mendes <cmendes 'at' inf puc-rio br>
-" Last Change:  2022 Sep 07
+" Last Change:  2023 Jul 19
 " Options:      lua_version = 4 or 5
 "               lua_subversion = 0 (for 4.0 or 5.0)
 "                               or 1, 2, 3 (for 5.1, 5.2 or 5.3)
@@ -63,7 +63,7 @@ syn match  luaError "}"
 syn match  luaError "\<\%(end\|else\|elseif\|then\|until\|in\)\>"
 
 " Function declaration
-syn region luaFunctionBlock transparent matchgroup=luaFunction start="\<function\>" end="\<end\>" contains=TOP
+syn region luaFunctionBlock transparent matchgroup=luaFunctionKeyword start="\<function\>" end="\<end\>" contains=TOP
 
 " else
 syn keyword luaCondElse matchgroup=luaCond contained containedin=luaCondEnd else
@@ -167,242 +167,242 @@ endif
 syn region luaTableBlock transparent matchgroup=luaTable start="{" end="}" contains=TOP,luaStatement
 
 " methods
-syntax match luaFunc ":\@<=\k\+"
+syntax match luaFunction ":\@<=\k\+"
 
 " built-in functions
-syn keyword luaFunc assert collectgarbage dofile error next
-syn keyword luaFunc print rawget rawset self tonumber tostring type _VERSION
+syn keyword luaFunction assert collectgarbage dofile error next
+syn keyword luaFunction print rawget rawset self tonumber tostring type _VERSION
 
 if lua_version == 4
-  syn keyword luaFunc _ALERT _ERRORMESSAGE gcinfo
-  syn keyword luaFunc call copytagmethods dostring
-  syn keyword luaFunc foreach foreachi getglobal getn
-  syn keyword luaFunc gettagmethod globals newtag
-  syn keyword luaFunc setglobal settag settagmethod sort
-  syn keyword luaFunc tag tinsert tremove
-  syn keyword luaFunc _INPUT _OUTPUT _STDIN _STDOUT _STDERR
-  syn keyword luaFunc openfile closefile flush seek
-  syn keyword luaFunc setlocale execute remove rename tmpname
-  syn keyword luaFunc getenv date clock exit
-  syn keyword luaFunc readfrom writeto appendto read write
-  syn keyword luaFunc PI abs sin cos tan asin
-  syn keyword luaFunc acos atan atan2 ceil floor
-  syn keyword luaFunc mod frexp ldexp sqrt min max log
-  syn keyword luaFunc log10 exp deg rad random
-  syn keyword luaFunc randomseed strlen strsub strlower strupper
-  syn keyword luaFunc strchar strrep ascii strbyte
-  syn keyword luaFunc format strfind gsub
-  syn keyword luaFunc getinfo getlocal setlocal setcallhook setlinehook
+  syn keyword luaFunction _ALERT _ERRORMESSAGE gcinfo
+  syn keyword luaFunction call copytagmethods dostring
+  syn keyword luaFunction foreach foreachi getglobal getn
+  syn keyword luaFunction gettagmethod globals newtag
+  syn keyword luaFunction setglobal settag settagmethod sort
+  syn keyword luaFunction tag tinsert tremove
+  syn keyword luaFunction _INPUT _OUTPUT _STDIN _STDOUT _STDERR
+  syn keyword luaFunction openfile closefile flush seek
+  syn keyword luaFunction setlocale execute remove rename tmpname
+  syn keyword luaFunction getenv date clock exit
+  syn keyword luaFunction readfrom writeto appendto read write
+  syn keyword luaFunction PI abs sin cos tan asin
+  syn keyword luaFunction acos atan atan2 ceil floor
+  syn keyword luaFunction mod frexp ldexp sqrt min max log
+  syn keyword luaFunction log10 exp deg rad random
+  syn keyword luaFunction randomseed strlen strsub strlower strupper
+  syn keyword luaFunction strchar strrep ascii strbyte
+  syn keyword luaFunction format strfind gsub
+  syn keyword luaFunction getinfo getlocal setlocal setcallhook setlinehook
 elseif lua_version == 5
-  syn keyword luaFunc getmetatable setmetatable
-  syn keyword luaFunc ipairs pairs
-  syn keyword luaFunc pcall xpcall
-  syn keyword luaFunc _G loadfile rawequal require
+  syn keyword luaFunction getmetatable setmetatable
+  syn keyword luaFunction ipairs pairs
+  syn keyword luaFunction pcall xpcall
+  syn keyword luaFunction _G loadfile rawequal require
   if lua_subversion == 0
-    syn keyword luaFunc getfenv setfenv
-    syn keyword luaFunc loadstring unpack
-    syn keyword luaFunc gcinfo loadlib LUA_PATH _LOADED _REQUIREDNAME
+    syn keyword luaFunction getfenv setfenv
+    syn keyword luaFunction loadstring unpack
+    syn keyword luaFunction gcinfo loadlib LUA_PATH _LOADED _REQUIREDNAME
   else
-    syn keyword luaFunc load select
-    syn match   luaFunc /\<package\.cpath\>/
-    syn match   luaFunc /\<package\.loaded\>/
-    syn match   luaFunc /\<package\.loadlib\>/
-    syn match   luaFunc /\<package\.path\>/
-    syn match   luaFunc /\<package\.preload\>/
+    syn keyword luaFunction load select
+    syn match   luaFunction /\<package\.cpath\>/
+    syn match   luaFunction /\<package\.loaded\>/
+    syn match   luaFunction /\<package\.loadlib\>/
+    syn match   luaFunction /\<package\.path\>/
+    syn match   luaFunction /\<package\.preload\>/
     if lua_subversion == 1
-      syn keyword luaFunc getfenv setfenv
-      syn keyword luaFunc loadstring module unpack
-      syn match   luaFunc /\<package\.loaders\>/
-      syn match   luaFunc /\<package\.seeall\>/
+      syn keyword luaFunction getfenv setfenv
+      syn keyword luaFunction loadstring module unpack
+      syn match   luaFunction /\<package\.loaders\>/
+      syn match   luaFunction /\<package\.seeall\>/
     elseif lua_subversion >= 2
-      syn keyword luaFunc _ENV rawlen
-      syn match   luaFunc /\<package\.config\>/
-      syn match   luaFunc /\<package\.preload\>/
-      syn match   luaFunc /\<package\.searchers\>/
-      syn match   luaFunc /\<package\.searchpath\>/
+      syn keyword luaFunction _ENV rawlen
+      syn match   luaFunction /\<package\.config\>/
+      syn match   luaFunction /\<package\.preload\>/
+      syn match   luaFunction /\<package\.searchers\>/
+      syn match   luaFunction /\<package\.searchpath\>/
     endif
 
     if lua_subversion >= 3
-      syn match luaFunc /\<coroutine\.isyieldable\>/
+      syn match luaFunction /\<coroutine\.isyieldable\>/
     endif
     if lua_subversion >= 4
-      syn keyword luaFunc warn
-      syn match luaFunc /\<coroutine\.close\>/
+      syn keyword luaFunction warn
+      syn match luaFunction /\<coroutine\.close\>/
     endif
-    syn match luaFunc /\<coroutine\.running\>/
+    syn match luaFunction /\<coroutine\.running\>/
   endif
-  syn match   luaFunc /\<coroutine\.create\>/
-  syn match   luaFunc /\<coroutine\.resume\>/
-  syn match   luaFunc /\<coroutine\.status\>/
-  syn match   luaFunc /\<coroutine\.wrap\>/
-  syn match   luaFunc /\<coroutine\.yield\>/
+  syn match   luaFunction /\<coroutine\.create\>/
+  syn match   luaFunction /\<coroutine\.resume\>/
+  syn match   luaFunction /\<coroutine\.status\>/
+  syn match   luaFunction /\<coroutine\.wrap\>/
+  syn match   luaFunction /\<coroutine\.yield\>/
 
-  syn match   luaFunc /\<string\.byte\>/
-  syn match   luaFunc /\<string\.char\>/
-  syn match   luaFunc /\<string\.dump\>/
-  syn match   luaFunc /\<string\.find\>/
-  syn match   luaFunc /\<string\.format\>/
-  syn match   luaFunc /\<string\.gsub\>/
-  syn match   luaFunc /\<string\.len\>/
-  syn match   luaFunc /\<string\.lower\>/
-  syn match   luaFunc /\<string\.rep\>/
-  syn match   luaFunc /\<string\.sub\>/
-  syn match   luaFunc /\<string\.upper\>/
+  syn match   luaFunction /\<string\.byte\>/
+  syn match   luaFunction /\<string\.char\>/
+  syn match   luaFunction /\<string\.dump\>/
+  syn match   luaFunction /\<string\.find\>/
+  syn match   luaFunction /\<string\.format\>/
+  syn match   luaFunction /\<string\.gsub\>/
+  syn match   luaFunction /\<string\.len\>/
+  syn match   luaFunction /\<string\.lower\>/
+  syn match   luaFunction /\<string\.rep\>/
+  syn match   luaFunction /\<string\.sub\>/
+  syn match   luaFunction /\<string\.upper\>/
   if lua_subversion == 0
-    syn match luaFunc /\<string\.gfind\>/
+    syn match luaFunction /\<string\.gfind\>/
   else
-    syn match luaFunc /\<string\.gmatch\>/
-    syn match luaFunc /\<string\.match\>/
-    syn match luaFunc /\<string\.reverse\>/
+    syn match luaFunction /\<string\.gmatch\>/
+    syn match luaFunction /\<string\.match\>/
+    syn match luaFunction /\<string\.reverse\>/
   endif
   if lua_subversion >= 3
-    syn match luaFunc /\<string\.pack\>/
-    syn match luaFunc /\<string\.packsize\>/
-    syn match luaFunc /\<string\.unpack\>/
-    syn match luaFunc /\<utf8\.char\>/
-    syn match luaFunc /\<utf8\.charpattern\>/
-    syn match luaFunc /\<utf8\.codes\>/
-    syn match luaFunc /\<utf8\.codepoint\>/
-    syn match luaFunc /\<utf8\.len\>/
-    syn match luaFunc /\<utf8\.offset\>/
+    syn match luaFunction /\<string\.pack\>/
+    syn match luaFunction /\<string\.packsize\>/
+    syn match luaFunction /\<string\.unpack\>/
+    syn match luaFunction /\<utf8\.char\>/
+    syn match luaFunction /\<utf8\.charpattern\>/
+    syn match luaFunction /\<utf8\.codes\>/
+    syn match luaFunction /\<utf8\.codepoint\>/
+    syn match luaFunction /\<utf8\.len\>/
+    syn match luaFunction /\<utf8\.offset\>/
   endif
 
   if lua_subversion == 0
-    syn match luaFunc /\<table\.getn\>/
-    syn match luaFunc /\<table\.setn\>/
-    syn match luaFunc /\<table\.foreach\>/
-    syn match luaFunc /\<table\.foreachi\>/
+    syn match luaFunction /\<table\.getn\>/
+    syn match luaFunction /\<table\.setn\>/
+    syn match luaFunction /\<table\.foreach\>/
+    syn match luaFunction /\<table\.foreachi\>/
   elseif lua_subversion == 1
-    syn match luaFunc /\<table\.maxn\>/
+    syn match luaFunction /\<table\.maxn\>/
   elseif lua_subversion >= 2
-    syn match luaFunc /\<table\.pack\>/
-    syn match luaFunc /\<table\.unpack\>/
+    syn match luaFunction /\<table\.pack\>/
+    syn match luaFunction /\<table\.unpack\>/
     if lua_subversion >= 3
-      syn match luaFunc /\<table\.move\>/
+      syn match luaFunction /\<table\.move\>/
     endif
   endif
-  syn match   luaFunc /\<table\.concat\>/
-  syn match   luaFunc /\<table\.insert\>/
-  syn match   luaFunc /\<table\.sort\>/
-  syn match   luaFunc /\<table\.remove\>/
+  syn match   luaFunction /\<table\.concat\>/
+  syn match   luaFunction /\<table\.insert\>/
+  syn match   luaFunction /\<table\.sort\>/
+  syn match   luaFunction /\<table\.remove\>/
 
   if lua_subversion == 2
-    syn match   luaFunc /\<bit32\.arshift\>/
-    syn match   luaFunc /\<bit32\.band\>/
-    syn match   luaFunc /\<bit32\.bnot\>/
-    syn match   luaFunc /\<bit32\.bor\>/
-    syn match   luaFunc /\<bit32\.btest\>/
-    syn match   luaFunc /\<bit32\.bxor\>/
-    syn match   luaFunc /\<bit32\.extract\>/
-    syn match   luaFunc /\<bit32\.lrotate\>/
-    syn match   luaFunc /\<bit32\.lshift\>/
-    syn match   luaFunc /\<bit32\.replace\>/
-    syn match   luaFunc /\<bit32\.rrotate\>/
-    syn match   luaFunc /\<bit32\.rshift\>/
+    syn match   luaFunction /\<bit32\.arshift\>/
+    syn match   luaFunction /\<bit32\.band\>/
+    syn match   luaFunction /\<bit32\.bnot\>/
+    syn match   luaFunction /\<bit32\.bor\>/
+    syn match   luaFunction /\<bit32\.btest\>/
+    syn match   luaFunction /\<bit32\.bxor\>/
+    syn match   luaFunction /\<bit32\.extract\>/
+    syn match   luaFunction /\<bit32\.lrotate\>/
+    syn match   luaFunction /\<bit32\.lshift\>/
+    syn match   luaFunction /\<bit32\.replace\>/
+    syn match   luaFunction /\<bit32\.rrotate\>/
+    syn match   luaFunction /\<bit32\.rshift\>/
   endif
 
-  syn match   luaFunc /\<math\.abs\>/
-  syn match   luaFunc /\<math\.acos\>/
-  syn match   luaFunc /\<math\.asin\>/
-  syn match   luaFunc /\<math\.atan\>/
+  syn match   luaFunction /\<math\.abs\>/
+  syn match   luaFunction /\<math\.acos\>/
+  syn match   luaFunction /\<math\.asin\>/
+  syn match   luaFunction /\<math\.atan\>/
   if lua_subversion < 3
-    syn match   luaFunc /\<math\.atan2\>/
+    syn match   luaFunction /\<math\.atan2\>/
   endif
-  syn match   luaFunc /\<math\.ceil\>/
-  syn match   luaFunc /\<math\.sin\>/
-  syn match   luaFunc /\<math\.cos\>/
-  syn match   luaFunc /\<math\.tan\>/
-  syn match   luaFunc /\<math\.deg\>/
-  syn match   luaFunc /\<math\.exp\>/
-  syn match   luaFunc /\<math\.floor\>/
-  syn match   luaFunc /\<math\.log\>/
-  syn match   luaFunc /\<math\.max\>/
-  syn match   luaFunc /\<math\.min\>/
+  syn match   luaFunction /\<math\.ceil\>/
+  syn match   luaFunction /\<math\.sin\>/
+  syn match   luaFunction /\<math\.cos\>/
+  syn match   luaFunction /\<math\.tan\>/
+  syn match   luaFunction /\<math\.deg\>/
+  syn match   luaFunction /\<math\.exp\>/
+  syn match   luaFunction /\<math\.floor\>/
+  syn match   luaFunction /\<math\.log\>/
+  syn match   luaFunction /\<math\.max\>/
+  syn match   luaFunction /\<math\.min\>/
   if lua_subversion == 0
-    syn match luaFunc /\<math\.mod\>/
-    syn match luaFunc /\<math\.log10\>/
+    syn match luaFunction /\<math\.mod\>/
+    syn match luaFunction /\<math\.log10\>/
   elseif lua_subversion == 1
-    syn match luaFunc /\<math\.log10\>/
+    syn match luaFunction /\<math\.log10\>/
   endif
   if lua_subversion >= 1
-    syn match luaFunc /\<math\.huge\>/
-    syn match luaFunc /\<math\.fmod\>/
-    syn match luaFunc /\<math\.modf\>/
+    syn match luaFunction /\<math\.huge\>/
+    syn match luaFunction /\<math\.fmod\>/
+    syn match luaFunction /\<math\.modf\>/
     if lua_subversion == 1 || lua_subversion == 2
-      syn match luaFunc /\<math\.cosh\>/
-      syn match luaFunc /\<math\.sinh\>/
-      syn match luaFunc /\<math\.tanh\>/
+      syn match luaFunction /\<math\.cosh\>/
+      syn match luaFunction /\<math\.sinh\>/
+      syn match luaFunction /\<math\.tanh\>/
     endif
   endif
-  syn match   luaFunc /\<math\.rad\>/
-  syn match   luaFunc /\<math\.sqrt\>/
+  syn match   luaFunction /\<math\.rad\>/
+  syn match   luaFunction /\<math\.sqrt\>/
   if lua_subversion < 3
-    syn match   luaFunc /\<math\.pow\>/
-    syn match   luaFunc /\<math\.frexp\>/
-    syn match   luaFunc /\<math\.ldexp\>/
+    syn match   luaFunction /\<math\.pow\>/
+    syn match   luaFunction /\<math\.frexp\>/
+    syn match   luaFunction /\<math\.ldexp\>/
   else
-    syn match   luaFunc /\<math\.maxinteger\>/
-    syn match   luaFunc /\<math\.mininteger\>/
-    syn match   luaFunc /\<math\.tointeger\>/
-    syn match   luaFunc /\<math\.type\>/
-    syn match   luaFunc /\<math\.ult\>/
+    syn match   luaFunction /\<math\.maxinteger\>/
+    syn match   luaFunction /\<math\.mininteger\>/
+    syn match   luaFunction /\<math\.tointeger\>/
+    syn match   luaFunction /\<math\.type\>/
+    syn match   luaFunction /\<math\.ult\>/
   endif
-  syn match   luaFunc /\<math\.random\>/
-  syn match   luaFunc /\<math\.randomseed\>/
-  syn match   luaFunc /\<math\.pi\>/
+  syn match   luaFunction /\<math\.random\>/
+  syn match   luaFunction /\<math\.randomseed\>/
+  syn match   luaFunction /\<math\.pi\>/
 
-  syn match   luaFunc /\<io\.close\>/
-  syn match   luaFunc /\<io\.flush\>/
-  syn match   luaFunc /\<io\.input\>/
-  syn match   luaFunc /\<io\.lines\>/
-  syn match   luaFunc /\<io\.open\>/
-  syn match   luaFunc /\<io\.output\>/
-  syn match   luaFunc /\<io\.popen\>/
-  syn match   luaFunc /\<io\.read\>/
-  syn match   luaFunc /\<io\.stderr\>/
-  syn match   luaFunc /\<io\.stdin\>/
-  syn match   luaFunc /\<io\.stdout\>/
-  syn match   luaFunc /\<io\.tmpfile\>/
-  syn match   luaFunc /\<io\.type\>/
-  syn match   luaFunc /\<io\.write\>/
+  syn match   luaFunction /\<io\.close\>/
+  syn match   luaFunction /\<io\.flush\>/
+  syn match   luaFunction /\<io\.input\>/
+  syn match   luaFunction /\<io\.lines\>/
+  syn match   luaFunction /\<io\.open\>/
+  syn match   luaFunction /\<io\.output\>/
+  syn match   luaFunction /\<io\.popen\>/
+  syn match   luaFunction /\<io\.read\>/
+  syn match   luaFunction /\<io\.stderr\>/
+  syn match   luaFunction /\<io\.stdin\>/
+  syn match   luaFunction /\<io\.stdout\>/
+  syn match   luaFunction /\<io\.tmpfile\>/
+  syn match   luaFunction /\<io\.type\>/
+  syn match   luaFunction /\<io\.write\>/
 
-  syn match   luaFunc /\<os\.clock\>/
-  syn match   luaFunc /\<os\.date\>/
-  syn match   luaFunc /\<os\.difftime\>/
-  syn match   luaFunc /\<os\.execute\>/
-  syn match   luaFunc /\<os\.exit\>/
-  syn match   luaFunc /\<os\.getenv\>/
-  syn match   luaFunc /\<os\.remove\>/
-  syn match   luaFunc /\<os\.rename\>/
-  syn match   luaFunc /\<os\.setlocale\>/
-  syn match   luaFunc /\<os\.time\>/
-  syn match   luaFunc /\<os\.tmpname\>/
+  syn match   luaFunction /\<os\.clock\>/
+  syn match   luaFunction /\<os\.date\>/
+  syn match   luaFunction /\<os\.difftime\>/
+  syn match   luaFunction /\<os\.execute\>/
+  syn match   luaFunction /\<os\.exit\>/
+  syn match   luaFunction /\<os\.getenv\>/
+  syn match   luaFunction /\<os\.remove\>/
+  syn match   luaFunction /\<os\.rename\>/
+  syn match   luaFunction /\<os\.setlocale\>/
+  syn match   luaFunction /\<os\.time\>/
+  syn match   luaFunction /\<os\.tmpname\>/
 
-  syn match   luaFunc /\<debug\.debug\>/
-  syn match   luaFunc /\<debug\.gethook\>/
-  syn match   luaFunc /\<debug\.getinfo\>/
-  syn match   luaFunc /\<debug\.getlocal\>/
-  syn match   luaFunc /\<debug\.getupvalue\>/
-  syn match   luaFunc /\<debug\.setlocal\>/
-  syn match   luaFunc /\<debug\.setupvalue\>/
-  syn match   luaFunc /\<debug\.sethook\>/
-  syn match   luaFunc /\<debug\.traceback\>/
+  syn match   luaFunction /\<debug\.debug\>/
+  syn match   luaFunction /\<debug\.gethook\>/
+  syn match   luaFunction /\<debug\.getinfo\>/
+  syn match   luaFunction /\<debug\.getlocal\>/
+  syn match   luaFunction /\<debug\.getupvalue\>/
+  syn match   luaFunction /\<debug\.setlocal\>/
+  syn match   luaFunction /\<debug\.setupvalue\>/
+  syn match   luaFunction /\<debug\.sethook\>/
+  syn match   luaFunction /\<debug\.traceback\>/
   if lua_subversion == 1
-    syn match luaFunc /\<debug\.getfenv\>/
-    syn match luaFunc /\<debug\.setfenv\>/
+    syn match luaFunction /\<debug\.getfenv\>/
+    syn match luaFunction /\<debug\.setfenv\>/
   endif
   if lua_subversion >= 1
-    syn match luaFunc /\<debug\.getmetatable\>/
-    syn match luaFunc /\<debug\.setmetatable\>/
-    syn match luaFunc /\<debug\.getregistry\>/
+    syn match luaFunction /\<debug\.getmetatable\>/
+    syn match luaFunction /\<debug\.setmetatable\>/
+    syn match luaFunction /\<debug\.getregistry\>/
     if lua_subversion >= 2
-      syn match luaFunc /\<debug\.getuservalue\>/
-      syn match luaFunc /\<debug\.setuservalue\>/
-      syn match luaFunc /\<debug\.upvalueid\>/
-      syn match luaFunc /\<debug\.upvaluejoin\>/
+      syn match luaFunction /\<debug\.getuservalue\>/
+      syn match luaFunction /\<debug\.setuservalue\>/
+      syn match luaFunction /\<debug\.upvalueid\>/
+      syn match luaFunction /\<debug\.upvaluejoin\>/
     endif
     if lua_subversion >= 4
-      syn match luaFunc /\<debug.setcstacklimit\>/
+      syn match luaFunction /\<debug.setcstacklimit\>/
     endif
   endif
 endif
@@ -422,7 +422,7 @@ hi def link luaSymbolOperator   luaOperator
 hi def link luaConstant         Constant
 hi def link luaCond             Conditional
 hi def link luaCondElse         Conditional
-hi def link luaFunction         Function
+hi def link luaFunctionKeyword  luaStatement
 hi def link luaMetaMethod       Function
 hi def link luaComment          Comment
 hi def link luaCommentDelimiter luaComment
@@ -431,7 +431,7 @@ hi def link luaTable            Structure
 hi def link luaError            Error
 hi def link luaParenError       Error
 hi def link luaSpecial          SpecialChar
-hi def link luaFunc             Identifier
+hi def link luaFunction         Function
 hi def link luaLabel            Label
 
 
